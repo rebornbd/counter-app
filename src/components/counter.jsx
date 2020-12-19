@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
+    // method: 01 (Binding Event Handlers)
+    // constructor() {
+    //     super();
+    //     this.handleIncrement = this.handleIncrement.bind(this);
+    // }
+
+    // handleIncrement() {
+    //     console.log("clicked", this);
+    // }
+
     state = {
         count: 0,
         tags: ["tag1", "tag2", "tag3"]
@@ -10,10 +20,16 @@ class Counter extends Component {
         return (
             <React.Fragment>
                 <span className={ this.getBadgeClasses() }>{this.formateCount()}</span>
-                <button className="btn btn-primary">Increment</button>
+                <button onClick={ this.handleIncrement } className="btn btn-primary">Increment</button>
                 <ul>{ this.getRenderingList() }</ul>
             </React.Fragment>
         );
+    };
+
+    // method: 02 (Binding Event Handlers)
+    handleIncrement = () => {
+        const myCount = this.state.count;
+        this.setState({ count: myCount+1 });
     };
 
     getRenderingList() {
