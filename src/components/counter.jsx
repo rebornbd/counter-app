@@ -6,13 +6,18 @@ class Counter extends Component {
     };
 
     render() {
-        console.log("props: ", this.props);
+        // console.log("props: ", this.props);
 
         return (
             <div className="my-4">
                 {this.props.children}
                 <span className={ this.getBadgeClasses() }>{this.formateCount()}</span>
-                <button onClick={ this.handleIncrement } className="btn btn-primary btn-sm">Increment</button>
+                <button 
+                    onClick={ this.handleIncrement } 
+                    className="btn btn-primary btn-sm m-2">Increment</button>
+                <button 
+                    onClick={() => this.props.onDelete(this.props.id) } 
+                    className="btn btn-danger btn-sm m-2">Delete</button>
             </div>
         );
     };
