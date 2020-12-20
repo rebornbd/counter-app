@@ -11,11 +11,16 @@ class Movies extends Component {
         this.setState({ movies: newMovies });
     };
 
+    handleReset = () => {
+        const movies =  getMovies();
+        this.setState({ movies });
+    };
+
     render() {
         const movieCount = this.state.movies.length;
 
         if (movieCount === 0)
-            return <h3>There are no movies in the db</h3>;
+            return <React.Fragment><h3>There are no movies in the db</h3><button onClick={this.handleReset} className="my-4 btn btn-block btn-warning btn-sm">RESET</button></React.Fragment>;
         
         return (
             <React.Fragment>
