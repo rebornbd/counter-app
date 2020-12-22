@@ -15,8 +15,10 @@ class Counters extends Component {
     handleIncrement = (counter) => {
         // console.log(counter);
         const counters = this.state.counters.map(c => {
-            if (c.id === counter.id)
-                return {id: c.id, value: c.value+1};
+            if (c.id === counter.id) {
+                c.value += 1;
+                return c;
+            }
             return c;
         });
 
@@ -29,7 +31,7 @@ class Counters extends Component {
     };
 
     handleReset = () => {
-        const counters = this.state.counters.map(c => { return {id: c.id, value: 0}; });
+        const counters = this.state.counters.map(c => { c.value=0; return c; });
         this.setState({ counters });
     };
 
@@ -38,7 +40,7 @@ class Counters extends Component {
             <div>
                 <button 
                     onClick={this.handleReset}
-                    className="btn btn-danger btn-sm">RESET</button>
+                    className="btn btn-danger btn-sm">Reset</button>
 
                 { this.state.counters.map(counter => (
                     <Counter 
