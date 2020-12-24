@@ -13,26 +13,7 @@ class App extends Component {
     ],
   };
 
-  // ====================
-  constructor() {
-    super();
-    console.log("app - constructor");
-  }
-
-  componentDidMount() {
-    console.log("app - componentDidMount");
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log("app prevProps", prevProps);
-    // console.log("app coprevState", prevState);
-    // console.log("app snapshot", snapshot);
-  }
-
-  // =====================
-
   handleIncrement = (counter) => {
-      // console.log(counter);
       const counters = this.state.counters.map(c => {
           if (c.id === counter.id) {
               c.value += 1;

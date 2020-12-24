@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("counter prevProps", prevProps);
-        // console.log("this.props", this.props.counter.value);
-        // console.log("counter coprevState", prevState);
-        // console.log("counter snapshot", snapshot);
-
-        if (prevProps.counter.value !== this.props.counter.value) {
-            // value changes: do something
-            console.log("wtf");
-        }
-    }
-
+    
     render() {
         console.log("counter - rendered");
 
