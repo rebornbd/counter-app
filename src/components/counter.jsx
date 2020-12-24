@@ -1,51 +1,42 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    // method: 01 (Binding Event Handlers)
-    // constructor() {
-    //     super();
-    //     this.handleIncrement = this.handleIncrement.bind(this);
-    // }
-
-    // handleIncrement() {
-    //     console.log("clicked", this);
-    // }
-
-    state = {
-        count: 0,
-        tags: ["tag1", "tag2", "tag3"]
-    };
-
+    
     render() {
+        const { onIncrement, onDecrement, counter, onDelete } = this.props;
+
         return (
-            <React.Fragment>
-                <span className={ this.getBadgeClasses() }>{this.formateCount()}</span>
-                <button onClick={ this.handleIncrement } className="btn btn-primary">Increment</button>
-                <ul>{ this.getRenderingList() }</ul>
-            </React.Fragment>
+            <div className="row">
+                <div className="col-1">
+                    <span className={ this.getBadgeClasses() }>
+                        {this.formateCount()}
+                    </span>
+                </div>
+                <div className="col">
+                    <button 
+                        onClick={() => onIncrement(counter) } 
+                        className="btn btn-primary btn-sm">+</button>
+                    <button 
+                        onClick={() => onDecrement(counter) }
+                        disabled={counter.value === 0 ? "disabled" : ""}
+                        className="btn btn-primary btn-sm m-2">-</button>
+                    <button 
+                        onClick={() => onDelete(counter.id) } 
+                        className="btn btn-danger btn-sm">x</button>
+                </div>
+            </div>
         );
     };
 
-    // method: 02 (Binding Event Handlers)
-    handleIncrement = () => {
-        const myCount = this.state.count;
-        this.setState({ count: myCount+1 });
-    };
-
-    getRenderingList() {
-        let newList = this.state.tags.map(tag => <li key={tag}>{ tag.toLocaleUpperCase() }</li>);
-        return newList;
-    }
-
     getBadgeClasses() {
-        let classes = "badge m-2 badge-";
-        classes += (this.state.count === 0) ? "warning" : "primary";
+        let classes = "badge badge-";
+        classes += (this.props.counter.value === 0) ? "warning" : "primary";
         return classes;
     }
 
     formateCount() {
-        const { count } = this.state;
-        return count === 0 ? "Zero" : count;
+        const { value } = this.props.counter;
+        return value === 0 ? "zero" : value;
     }
 }
 

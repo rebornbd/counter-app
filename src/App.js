@@ -1,25 +1,79 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Counters from "./components/counters";
+import Navbar from "./components/navbar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	state = {
+		counters: [
+			{ id: 1, value: 5 },
+			{ id: 2, value: 0 },
+			{ id: 3, value: 0 },
+			{ id: 4, value: 5 },
+		],
+	};
+
+  	handleIncrement = (counter) => {
+      	const counters = this.state.counters.map(c => {
+          	if (c.id === counter.id) {
+              	c.value += 1;
+              	return c;
+          	}
+          	return c;
+      	});
+
+      	this.setState({ counters });
+  	};
+
+  	handleDecrement = (counter) => {
+    	const counters = this.state.counters.map(c => {
+      		if (c.id === counter.id) {
+				if (c.value > 0)
+          			c.value -= 1;
+          		return c;
+      		}
+      		return c;
+  		});
+
+		this.setState({ counters });
+  	};
+
+  	handleDelete = (counterId) => {
+      	const counters = this.state.counters.filter(counter => counter.id !== counterId);
+      	this.setState({ counters });
+  	};
+
+  	handleReset = () => {
+      	const counters = this.state.counters.map(c => { c.value=0; return c; });
+      	this.setState({ counters });
+  	};
+
+  	handleTotalCount = () => {
+    	let totalCount = 0;
+    	for (let counter of this.state.counters)
+      		totalCount += counter.value;
+    	return totalCount;
+  	};
+
+  	render() {
+		return (
+			<React.Fragment>
+				<Navbar 
+					totalCount={this.handleTotalCount()}
+				/>
+
+				<main className="container my-4">
+					<Counters 
+						counters={this.state.counters}
+						onReset={this.handleReset}
+						onIncrement={this.handleIncrement}
+						onDecrement={this.handleDecrement}
+						onDelete={this.handleDelete}
+					/>
+				</main>
+			</React.Fragment>
+		);
+  	}
 }
 
 export default App;

@@ -1,1 +1,1 @@
-### counter app
+### Composing Components
