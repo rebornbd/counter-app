@@ -59,16 +59,16 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<Navbar 
-				totalCount={this.handleTotalCount()}
+					totalCount={this.handleTotalCount()}
 				/>
 
 				<main className="container my-4">
 					<Counters 
-					counters={this.state.counters}
-					onReset={this.handleReset}
-					onIncrement={this.handleIncrement}
-					onDecrement={this.handleDecrement}
-					onDelete={this.handleDelete}
+						counters={this.state.counters}
+						onReset={this.handleReset}
+						onIncrement={this.handleIncrement}
+						onDecrement={this.handleDecrement}
+						onDelete={this.handleDelete}
 					/>
 				</main>
 			</React.Fragment>

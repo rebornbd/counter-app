@@ -10,7 +10,7 @@ class Counters extends Component {
             <div>
                 <button 
                     onClick={onReset}
-                    className="btn btn-danger btn-sm">Reset</button>
+                    className="btn btn-danger btn-sm mb-4">Reset</button>
 
                 { counters.map(counter => (
                     <Counter 
